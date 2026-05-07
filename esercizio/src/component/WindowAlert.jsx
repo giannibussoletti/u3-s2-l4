@@ -7,6 +7,7 @@ const WindowAlert = function () {
     <>
       <div className="position-absolute p-3">
         <Alert
+          data-testid="window-alert"
           show={show}
           variant="success"
           style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}>

@@ -4,6 +4,7 @@ const SingleBook = function (props) {
   return (
     <>
       <Card
+        data-testid={props.datatestid}
         className="h-100"
         style={{
           border: props.answer === props.asin ? "2px solid red" : "1px solid grey",

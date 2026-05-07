@@ -44,6 +44,7 @@ const ListBook = function (props) {
                   asin={book.asin}
                   answer={props.staticAsin}
                   genre={book.category}
+                  datatestid="singleBook"
                 />
               </Col>
             )
