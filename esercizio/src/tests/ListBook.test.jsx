@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { describe, it, expect } from "vitest"
 import ListBook from "../component/ListBook"
 
@@ -21,11 +21,44 @@ describe("Check generate list of book", () => {
     }
   })
 
-  it("chemy how many books is generated and if is all", async () => {
+  it("checks how many books is generated and if is all", async () => {
     render(<ListBook object={AllTheBooks} />)
     try {
       const singleBook = await screen.findAllByTestId(/singleBook/i)
       expect(singleBook.length).toBeLessThanOrEqual(FantasyBooks.length)
+    } catch (error) {
+      console.log(error)
+    }
+  })
+
+  it("checks border click change color", async () => {
+    render(<ListBook object={AllTheBooks} />)
+    try {
+      const AllBooks = await screen.findAllByTestId(/singleBook/i)
+      const singleBook = AllBooks[0]
+      fireEvent.click(singleBook)
+      expect(singleBook).toHaveStyle("border:2px solid red")
+
+      // fireEvent.click(singleBook)
+      // console.log(singleBook)
+    } catch (error) {
+      console.log(error)
+    }
+  })
+  it("checks border click change color when another pressed", async () => {
+    render(<ListBook object={AllTheBooks} />)
+    try {
+      const AllBooks = await screen.findAllByTestId(/singleBook/i)
+      const singleBookZero = AllBooks[0]
+      const singleBookOne = AllBooks[1]
+
+      fireEvent.click(singleBookZero)
+      expect(singleBookZero).toHaveStyle("border:2px solid red")
+      fireEvent.click(singleBookOne)
+      expect(singleBookZero).toHaveStyle("border:1px solid grey")
+
+      // fireEvent.click(singleBook)
+      // console.log(singleBook)
     } catch (error) {
       console.log(error)
     }
